@@ -5,6 +5,25 @@ import ImageListing from './Components/ImageListing'
 import ImageDescription from './Components/ImageDescription'
 import {API_KEY,URL,URLPARAM } from './Constant'
 import { pushImage } from './Actions'
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  width: 30%;
+  padding: 30px;
+  background: white;
+  border: 1px solid #d6d6d6;
+  border-radius: 4px;
+  
+  @media (max-width: 768px) {
+    width: 80%;
+  }
+  margin: 0px auto;
+  color: #777;
+
+  & h1{
+    font-size: 27px;
+  }
+`;
 
 function App() {
 
@@ -31,11 +50,11 @@ function App() {
       })
   },[])
   return (
-      <div>
+      <Wrapper>
         <h1>Image Approval Application</h1>
         <ImageListing/>
         <ImageDescription/>
-      </div>
+      </Wrapper>
   );
 }
 

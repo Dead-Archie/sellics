@@ -1,8 +1,67 @@
 import React, { useState, useEffect} from 'react'
 import { useSelector, useDispatch }  from 'react-redux'
 import { pushImage } from '../../Actions'
+import styled from "styled-components";
 
-// import PropTypes from 'prop-types'
+
+const AddImageContainer = styled.div`
+    & button {
+        background: #d6d6d6;
+        height: 500px;
+        width: 100%;
+        position: relative;
+        color: #b8b4b4;
+        font-size: 50px;
+        border: 1px solid #b8b4b4;
+      }
+
+    & div {
+        text-align:center;
+        color:#777;
+        padding : 6%;
+    }
+`;
+
+const ImageContainer = styled.div`
+    & img {
+        background: #d6d6d6;
+        height: 500px;
+        width: 100%;
+        position: relative;
+        border: 1px solid #b8b4b4;
+      }
+
+    & div.buttonContainer {
+        text-align:center;
+        & button {
+            
+            width: 30%;
+            margin: 10px;
+            border: 1px solid #d6d6d6;
+            border-radius: 5px;
+        }
+        & button.rejected {
+            font-weight: bold;
+            color: #777;
+            font-size: 20px;
+            padding: 10px;
+        }
+        & button.rejected:hover {
+            background: #d6d6d6;
+        }
+        & button.accepted {
+            color: #777;
+            background: #d6d6d6;
+            padding: 13px;
+            position: relative;
+            top: -2px;
+        }
+        & button.accepted:hover {
+            background: #777;
+            color: #d6d6d6;
+        }
+    }
+`;
 
 const ImageDescription = (props)=>{
     const [counter, setCounter] = useState(0);
@@ -24,7 +83,6 @@ const ImageDescription = (props)=>{
         }else{
             setCounter(counter+1);
         }
-        console.log(selectImage);
         setImage(selectImage);
     }
     const visitedImage = (imageId, type) => {
@@ -53,21 +111,21 @@ const ImageDescription = (props)=>{
         setCounter(counter+1);
     }
     return image ? (
-        <div>
-            <h3>{image.id}</h3>
+        <ImageContainer>
             <img src={image.urls.regular}/>
-            <button onClick = {()=>visitedImage(image.id,'rejected')}> Reject </button>
-            <button onClick = {()=>visitedImage(image.id,'selected')}> Accept </button>
-        </div>
+            <div className="buttonContainer">
+                <button className="rejected" title="Rejected" onClick = {()=>visitedImage(image.id,'rejected')}> &#215; </button>
+                <button className="accepted" title="Accepted" onClick = {()=>visitedImage(image.id,'selected')}> &#10004; </button>
+            </div>
+        </ImageContainer>
     ) :(
-        <div>
+        <AddImageContainer>
             <button onClick={()=>renderImage()}>+</button>
-        </div>
+            <div>
+                Click on the <span>+</span> button in order to get image recommendations.
+            </div>
+        </AddImageContainer>
     )
 }
-
-// ImageDescription.propTypes = {
-
-// }
 
 export default ImageDescription;
