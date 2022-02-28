@@ -1,14 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import App from './App';
+import ImageListing from '../index';
 
 jest.mock('react-redux', () => ({
-  useDispatch: jest.fn()
+  useDispatch: jest.fn(),
+  useSelector: jest.fn(),
 }));
-
-let store = {
-	uploadImage: {},
-};
 
 describe('App test suite', () => {
   const props = {};
@@ -16,7 +13,7 @@ describe('App test suite', () => {
 
 
   function renderShallow() {
-    wrapper = shallow(<App {...props} store={store}/>);
+    wrapper = shallow(<ImageListing {...props} />);
     instance = wrapper.instance();
   }
 
@@ -25,6 +22,4 @@ describe('App test suite', () => {
     renderShallow();
     expect(wrapper).toMatchSnapshot();
   });
-
-  
 })

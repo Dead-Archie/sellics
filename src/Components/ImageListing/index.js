@@ -19,7 +19,7 @@ const ImageListingWrapper = styled.div`
 `;
 
 const ImageListing = ()=>{
-    let imageList = useSelector(state => state.uploadImage);
+    let imageList = useSelector(state => state.uploadImage)||{};
     imageList = Object.values(imageList);
     if(imageList.length<1) return null;
     const approvedImageCount = imageList && imageList.filter(image => image.isVisited && !image.isRejected)

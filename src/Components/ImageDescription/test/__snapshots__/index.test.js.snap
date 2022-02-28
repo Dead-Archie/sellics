@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App test suite <APP/> should render with default props 1`] = `ShallowWrapper {}`;
